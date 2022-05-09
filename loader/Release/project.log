@@ -1,0 +1,81 @@
+﻿  Main.cpp
+  The contents of <filesystem> are available only with C++17 or later.
+E:\сурцы\testloader\loader\class.h(3,1): warning C4005: VM_TIGER_WHITE_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(36): message : см. предыдущее определение "VM_TIGER_WHITE_START"
+E:\сурцы\testloader\loader\class.h(4,1): warning C4005: VM_TIGER_WHITE_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(58): message : см. предыдущее определение "VM_TIGER_WHITE_END"
+E:\сурцы\testloader\loader\class.h(6,1): warning C4005: VM_TIGER_RED_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(80): message : см. предыдущее определение "VM_TIGER_RED_START"
+E:\сурцы\testloader\loader\class.h(7,1): warning C4005: VM_TIGER_RED_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(102): message : см. предыдущее определение "VM_TIGER_RED_END"
+E:\сурцы\testloader\loader\class.h(9,1): warning C4005: VM_TIGER_BLACK_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(124): message : см. предыдущее определение "VM_TIGER_BLACK_START"
+E:\сурцы\testloader\loader\class.h(10,1): warning C4005: VM_TIGER_BLACK_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(146): message : см. предыдущее определение "VM_TIGER_BLACK_END"
+E:\сурцы\testloader\loader\class.h(12,1): warning C4005: VM_FISH_WHITE_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(168): message : см. предыдущее определение "VM_FISH_WHITE_START"
+E:\сурцы\testloader\loader\class.h(13,1): warning C4005: VM_FISH_WHITE_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(190): message : см. предыдущее определение "VM_FISH_WHITE_END"
+E:\сурцы\testloader\loader\class.h(15,1): warning C4005: VM_FISH_RED_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(212): message : см. предыдущее определение "VM_FISH_RED_START"
+E:\сурцы\testloader\loader\class.h(16,1): warning C4005: VM_FISH_RED_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(234): message : см. предыдущее определение "VM_FISH_RED_END"
+E:\сурцы\testloader\loader\class.h(18,1): warning C4005: VM_FISH_BLACK_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(256): message : см. предыдущее определение "VM_FISH_BLACK_START"
+E:\сурцы\testloader\loader\class.h(19,1): warning C4005: VM_FISH_BLACK_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(278): message : см. предыдущее определение "VM_FISH_BLACK_END"
+E:\сурцы\testloader\loader\class.h(21,1): warning C4005: VM_PUMA_WHITE_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(300): message : см. предыдущее определение "VM_PUMA_WHITE_START"
+E:\сурцы\testloader\loader\class.h(22,1): warning C4005: VM_PUMA_WHITE_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(322): message : см. предыдущее определение "VM_PUMA_WHITE_END"
+E:\сурцы\testloader\loader\class.h(24,1): warning C4005: VM_PUMA_RED_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(344): message : см. предыдущее определение "VM_PUMA_RED_START"
+E:\сурцы\testloader\loader\class.h(25,1): warning C4005: VM_PUMA_RED_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(366): message : см. предыдущее определение "VM_PUMA_RED_END"
+E:\сурцы\testloader\loader\class.h(27,1): warning C4005: VM_PUMA_BLACK_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(388): message : см. предыдущее определение "VM_PUMA_BLACK_START"
+E:\сурцы\testloader\loader\class.h(28,1): warning C4005: VM_PUMA_BLACK_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(410): message : см. предыдущее определение "VM_PUMA_BLACK_END"
+E:\сурцы\testloader\loader\class.h(30,1): warning C4005: VM_SHARK_WHITE_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(432): message : см. предыдущее определение "VM_SHARK_WHITE_START"
+E:\сурцы\testloader\loader\class.h(31,1): warning C4005: VM_SHARK_WHITE_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(454): message : см. предыдущее определение "VM_SHARK_WHITE_END"
+E:\сурцы\testloader\loader\class.h(33,1): warning C4005: VM_SHARK_RED_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(476): message : см. предыдущее определение "VM_SHARK_RED_START"
+E:\сурцы\testloader\loader\class.h(34,1): warning C4005: VM_SHARK_RED_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(498): message : см. предыдущее определение "VM_SHARK_RED_END"
+E:\сурцы\testloader\loader\class.h(36,1): warning C4005: VM_SHARK_BLACK_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(520): message : см. предыдущее определение "VM_SHARK_BLACK_START"
+E:\сурцы\testloader\loader\class.h(37,1): warning C4005: VM_SHARK_BLACK_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(542): message : см. предыдущее определение "VM_SHARK_BLACK_END"
+E:\сурцы\testloader\loader\class.h(39,1): warning C4005: VM_DOLPHIN_WHITE_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(564): message : см. предыдущее определение "VM_DOLPHIN_WHITE_START"
+E:\сурцы\testloader\loader\class.h(40,1): warning C4005: VM_DOLPHIN_WHITE_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(586): message : см. предыдущее определение "VM_DOLPHIN_WHITE_END"
+E:\сурцы\testloader\loader\class.h(42,1): warning C4005: VM_DOLPHIN_RED_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(608): message : см. предыдущее определение "VM_DOLPHIN_RED_START"
+E:\сурцы\testloader\loader\class.h(43,1): warning C4005: VM_DOLPHIN_RED_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(630): message : см. предыдущее определение "VM_DOLPHIN_RED_END"
+E:\сурцы\testloader\loader\class.h(45,1): warning C4005: VM_DOLPHIN_BLACK_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(652): message : см. предыдущее определение "VM_DOLPHIN_BLACK_START"
+E:\сурцы\testloader\loader\class.h(46,1): warning C4005: VM_DOLPHIN_BLACK_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(674): message : см. предыдущее определение "VM_DOLPHIN_BLACK_END"
+E:\сурцы\testloader\loader\class.h(48,1): warning C4005: VM_EAGLE_WHITE_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(696): message : см. предыдущее определение "VM_EAGLE_WHITE_START"
+E:\сурцы\testloader\loader\class.h(49,1): warning C4005: VM_EAGLE_WHITE_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(718): message : см. предыдущее определение "VM_EAGLE_WHITE_END"
+E:\сурцы\testloader\loader\class.h(51,1): warning C4005: VM_EAGLE_RED_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(740): message : см. предыдущее определение "VM_EAGLE_RED_START"
+E:\сурцы\testloader\loader\class.h(52,1): warning C4005: VM_EAGLE_RED_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(762): message : см. предыдущее определение "VM_EAGLE_RED_END"
+E:\сурцы\testloader\loader\class.h(54,1): warning C4005: VM_EAGLE_BLACK_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(784): message : см. предыдущее определение "VM_EAGLE_BLACK_START"
+E:\сурцы\testloader\loader\class.h(55,1): warning C4005: VM_EAGLE_BLACK_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(806): message : см. предыдущее определение "VM_EAGLE_BLACK_END"
+E:\сурцы\testloader\loader\class.h(57,1): warning C4005: VM_MUTATE_ONLY_START: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(828): message : см. предыдущее определение "VM_MUTATE_ONLY_START"
+E:\сурцы\testloader\loader\class.h(58,1): warning C4005: VM_MUTATE_ONLY_END: изменение макроопределения
+E:\сурцы\testloader\loader\ThemidaSDK\SecureEngineCustomVMs_VC_inline.h(850): message : см. предыдущее определение "VM_MUTATE_ONLY_END"
+E:\сурцы\testloader\loader\bug.h(2,1): warning C4005: _CRT_SECURE_NO_WARNINGS: изменение макроопределения
+E:\сурцы\testloader\loader\Main.cpp : message : см. предыдущее определение "_CRT_SECURE_NO_WARNINGS"
+E:\vcpkg-2022.02.23\installed\x86-windows\include\boost\asio\detail\socket_types.hpp(24,1): fatal error C1189: #error:  WinSock.h has already been included

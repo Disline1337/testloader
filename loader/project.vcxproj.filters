@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="dcrypt">
+      <UniqueIdentifier>{caee2320-ba40-40ef-8e36-f14805b68772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="protect">
+      <UniqueIdentifier>{69dbb4d0-92b4-4343-a587-8380f932f513}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThemidaSDK">
+      <UniqueIdentifier>{33bfa034-4ea4-42ab-900b-dfd03de35850}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Injection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dcrypt\crypt.cpp">
+      <Filter>dcrypt</Filter>
+    </ClCompile>
+    <ClCompile Include="bug.cpp">
+      <Filter>protect</Filter>
+    </ClCompile>
+    <ClCompile Include="proc.cpp">
+      <Filter>protect</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Injection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Guard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="class.h">
+      <Filter>ThemidaSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="dcrypt\crypt.h">
+      <Filter>dcrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="dcrypt\dchar.h">
+      <Filter>dcrypt</Filter>
+    </ClInclude>
+    <ClInclude Include="bug.h">
+      <Filter>protect</Filter>
+    </ClInclude>
+    <ClInclude Include="proc.h">
+      <Filter>protect</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
