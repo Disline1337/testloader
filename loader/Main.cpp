@@ -1,61 +1,165 @@
-#include "Injection.h"
+#include "Main.h"
+#include "ui/ui.hh"
 
-#include <iostream>
-#include <string>
-#include <tlhelp32.h>
-#include <Shlwapi.h>
-#pragma comment(lib,"Shlwapi.lib")
-#include <tchar.h>
-#include <experimental/filesystem>
-#include <filesystem>
-#include "Guard.h"
-#include "class.h"
-#include "bug.h"
-#include <random>
-#include "main.h"
-#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+// Forward declarations of helper functions
 
 
-auto version = "1";
-string check = dchar("http://f0632720.xsph.ru/version.txt");
+// Main code
+int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+	// Create application window
+	//ImGui_ImplWin32_EnableDpiAwareness();
+	WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, ui::window_title, NULL };
+	RegisterClassEx(&wc);
+	main_hwnd = CreateWindow(wc.lpszClassName, ui::window_title, WS_POPUP, 0, 0, 5, 5, NULL, NULL, wc.hInstance, NULL);
 
-
-string repl(string subject, const string& search, const string& replace) {
-	size_t pos = 0;
-	while ((pos = subject.find(search, pos)) != string::npos) {
-		subject.replace(pos, search.length(), replace);
-		pos += replace.length();
+	// Initialize Direct3D
+	if (!CreateDeviceD3D(main_hwnd))
+	{
+		CleanupDeviceD3D();
+		UnregisterClass(wc.lpszClassName, wc.hInstance);
+		return 1;
 	}
-	return subject;
-}
-string dls(string URL) {
-	HINTERNET interwebs = InternetOpenA("Mozilla/5.0", INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, NULL);
-	HINTERNET urlFile;
-	string rtn;
-	if (interwebs) {
-		urlFile = InternetOpenUrlA(interwebs, URL.c_str(), NULL, NULL, NULL, NULL);
-		if (urlFile) {
-			char buffer[2000];
-			DWORD bytesRead;
-			do {
-				InternetReadFile(urlFile, buffer, 2000, &bytesRead);
-				rtn.append(buffer, bytesRead);
-				memset(buffer, 0, 2000);
-			} while (bytesRead);
-			InternetCloseHandle(interwebs);
-			InternetCloseHandle(urlFile);
-			string p = repl(rtn, "|n", "\r\n");
-			return p;
+
+	// Show the window
+	ShowWindow(main_hwnd, SW_SHOW);
+	UpdateWindow(main_hwnd);
+
+	// Setup Dear ImGui context
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	io.IniFilename = nullptr;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+
+	// Setup Dear ImGui style
+	ImGui::StyleColorsDark();
+	//ImGui::StyleColorsClassic();
+
+	// Setup Platform/Renderer backends
+	ImGui_ImplWin32_Init(main_hwnd);
+	ImGui_ImplDX9_Init(g_pd3dDevice);
+
+	// Load Fonts
+	// - If no fonts are loaded, dear imgui will use the default font. You can also load multiple fonts and use ImGui::PushFont()/PopFont() to select them.
+	// - AddFontFromFileTTF() will return the ImFont* so you can store it if you need to select the font among multiple.
+	// - If the file cannot be loaded, the function will return NULL. Please handle those errors in your application (e.g. use an assertion, or display an error and quit).
+	// - The fonts will be rasterized at a given size (w/ oversampling) and stored into a texture when calling ImFontAtlas::Build()/GetTexDataAsXXXX(), which ImGui_ImplXXXX_NewFrame below will call.
+	// - Read 'docs/FONTS.md' for more instructions and details.
+	// - Remember that in C/C++ if you want to include a backslash \ in a string literal you need to write a double backslash \\ !
+	//io.Fonts->AddFontDefault();
+	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/Roboto-Medium.ttf", 16.0f);
+	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf", 15.0f);
+	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f);
+	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/ProggyTiny.ttf", 10.0f);
+	//ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
+	//IM_ASSERT(font != NULL);
+
+	// Our state
+	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+
+	// Main loop
+	bool done = false;
+	while (!done)
+	{
+		// Poll and handle messages (inputs, window resize, etc.)
+		// You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
+		// - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
+		// - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application.
+		// Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
+		MSG msg;
+		while (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
+		{
+			TranslateMessage(&msg);
+			DispatchMessage(&msg);
+			if (msg.message == WM_QUIT)
+				done = true;
+		}
+		if (done)
+			break;
+
+		// Start the Dear ImGui frame
+		ImGui_ImplDX9_NewFrame();
+		ImGui_ImplWin32_NewFrame();
+		ImGui::NewFrame();
+		{
+			static int init = false;
+			if (!init) {
+				ui::init(g_pd3dDevice);
+				init = true;
+			}
+			ImGui::Begin(ui::window_title, &globals.active, ui::window_flags);
+			{
+				if (globals.auth)
+					ui::main();
+				else
+					ui::pre();
+			}
+			ImGui::End();
+		}
+		ImGui::EndFrame();
+		g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
+		g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
+		g_pd3dDevice->SetRenderState(D3DRS_SCISSORTESTENABLE, FALSE);
+		D3DCOLOR clear_col_dx = D3DCOLOR_RGBA((int)(clear_color.x * clear_color.w * 255.0f), (int)(clear_color.y * clear_color.w * 255.0f), (int)(clear_color.z * clear_color.w * 255.0f), (int)(clear_color.w * 255.0f));
+		g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, clear_col_dx, 1.0f, 0);
+		if (g_pd3dDevice->BeginScene() >= 0)
+		{
+			ImGui::Render();
+			ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
+			g_pd3dDevice->EndScene();
+		}
+		HRESULT result = g_pd3dDevice->Present(NULL, NULL, NULL, NULL);
+
+		// Handle loss of D3D9 device
+		if (result == D3DERR_DEVICELOST && g_pd3dDevice->TestCooperativeLevel() == D3DERR_DEVICENOTRESET) {
+			ResetDevice();
+		}
+		if (!globals.active) {
+			msg.message = WM_QUIT;
 		}
 	}
-	InternetCloseHandle(interwebs);
-	string p = repl(rtn, "|n", "\r\n");
-	return p;
+
+	ImGui_ImplDX9_Shutdown();
+	ImGui_ImplWin32_Shutdown();
+	ImGui::DestroyContext();
+
+	CleanupDeviceD3D();
+	DestroyWindow(main_hwnd);
+	UnregisterClass(wc.lpszClassName, wc.hInstance);
+
+	return 0;
+}
+
+LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
+		return true;
+
+	switch (msg)
+	{
+	case WM_SIZE:
+		if (g_pd3dDevice != NULL && wParam != SIZE_MINIMIZED)
+		{
+			g_d3dpp.BackBufferWidth = LOWORD(lParam);
+			g_d3dpp.BackBufferHeight = HIWORD(lParam);
+			ResetDevice();
+		}
+		return 0;
+	case WM_SYSCOMMAND:
+		if ((wParam & 0xfff0) == SC_KEYMENU) // Disable ALT application menu
+			return 0;
+		break;
+	case WM_DESTROY:
+		::PostQuitMessage(0);
+		return 0;
+	}
+	return ::DefWindowProc(hWnd, msg, wParam, lParam);
 }
 
 
-using namespace std;
-
+/*auto version = "1";
+string check = dchar("http://f0632720.xsph.ru/version.txt");
 
 void window()
 {
@@ -118,7 +222,7 @@ void download(const char* dllLink, const char* dllPath)
 /*	cout << dllLink << endl;
 	cout << dllPath << endl;
 	system("PAUSE");*/
-	URLDownloadToFileA(0, dllLink, dllPath, 0, 0);
+/*	URLDownloadToFileA(0, dllLink, dllPath, 0, 0);
 	DeleteUrlCacheEntryA(dllLink);
 	VM_DOLPHIN_BLACK_END
 }
@@ -132,7 +236,7 @@ void validate() {
 	string filename = dchar("updated.exe");
 	string name = experimental::filesystem::current_path().string() + "\\" + filename;
 
-	if (version != dls(check)) {
+	if (version != utils->dls(check)) {
 			download(host, name.c_str());
 			cout << "updating loader" << endl;
 			Sleep(500);
@@ -523,12 +627,8 @@ int main()
 	setup();
 	Sleep(500);
 
-/*	if (protection::check_security() != protection::debug_results::none) {
-		return 0;
-	}*/
-
 	setlocale(LC_ALL, "Russian");
-//	Protection::AllChecks();
+
 	validate();
 	Sleep(1500);
 	if (CheckLicense) {
@@ -536,4 +636,4 @@ int main()
 	}
 
 	VM_DOLPHIN_BLACK_END
-}
+}*/
