@@ -1,21 +1,32 @@
 #include "Main.h"
 #include "ui/ui.hh"
 
-// Forward declarations of helper functions
-
 
 // Main code
 int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
 	// Create application window
-	//ImGui_ImplWin32_EnableDpiAwareness();
 	WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, WndProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, ui::window_title, NULL };
+	
+	wc.cbSize = sizeof(WNDCLASSEX);
+	wc.style = CS_CLASSDC;
+	//wc.lpfnWndProc = WindowProcess;
+	wc.cbClsExtra = 0;
+	wc.cbWndExtra = 0;
+	wc.hInstance = GetModuleHandleA(0);
+	wc.hIcon = 0;
+	wc.hCursor = 0;
+	wc.hbrBackground = 0;
+	wc.lpszMenuName = 0;
+	wc.lpszClassName = "class001";
+	wc.hIconSm = 0;
+	
 	RegisterClassEx(&wc);
-	main_hwnd = CreateWindow(wc.lpszClassName, ui::window_title, WS_POPUP, 0, 0, 5, 5, NULL, NULL, wc.hInstance, NULL);
+		
+	main_hwnd = CreateWindowEx(0, "class001", "yes", WS_POPUP, 100, 100, ui::window_size.x, ui::window_size.y, 0, 0, wc.hInstance, 0);
 
 	// Initialize Direct3D
-	if (!CreateDeviceD3D(main_hwnd))
-	{
+	if (!CreateDeviceD3D(main_hwnd)) {
 		CleanupDeviceD3D();
 		UnregisterClass(wc.lpszClassName, wc.hInstance);
 		return 1;
@@ -32,9 +43,8 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
 	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
-	// Setup Dear ImGui style
-	ImGui::StyleColorsDark();
-	//ImGui::StyleColorsClassic();
+	// When viewports are enabled we tweak WindowRounding/WindowBg so platform windows can look identical to regular ones.
+	ImGuiStyle& style = ImGui::GetStyle();
 
 	// Setup Platform/Renderer backends
 	ImGui_ImplWin32_Init(main_hwnd);
@@ -55,28 +65,17 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	//ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
 	//IM_ASSERT(font != NULL);
 
-	// Our state
-	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-
 	// Main loop
-	bool done = false;
-	while (!done)
+	MSG msg;
+	ZeroMemory(&msg, sizeof(msg));
+	while (msg.message != WM_QUIT)
 	{
-		// Poll and handle messages (inputs, window resize, etc.)
-		// You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
-		// - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
-		// - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application.
-		// Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
-		MSG msg;
-		while (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
+		if (PeekMessage(&msg, NULL, 0U, 0U, PM_REMOVE))
 		{
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
-			if (msg.message == WM_QUIT)
-				done = true;
+			continue;
 		}
-		if (done)
-			break;
 
 		// Start the Dear ImGui frame
 		ImGui_ImplDX9_NewFrame();
@@ -98,17 +97,15 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			ImGui::End();
 		}
 		ImGui::EndFrame();
-		g_pd3dDevice->SetRenderState(D3DRS_ZENABLE, FALSE);
-		g_pd3dDevice->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
-		g_pd3dDevice->SetRenderState(D3DRS_SCISSORTESTENABLE, FALSE);
-		D3DCOLOR clear_col_dx = D3DCOLOR_RGBA((int)(clear_color.x * clear_color.w * 255.0f), (int)(clear_color.y * clear_color.w * 255.0f), (int)(clear_color.z * clear_color.w * 255.0f), (int)(clear_color.w * 255.0f));
-		g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, clear_col_dx, 1.0f, 0);
+
+		g_pd3dDevice->Clear(0, NULL, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0, 1.0f, 0);
 		if (g_pd3dDevice->BeginScene() >= 0)
 		{
 			ImGui::Render();
 			ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
 			g_pd3dDevice->EndScene();
 		}
+
 		HRESULT result = g_pd3dDevice->Present(NULL, NULL, NULL, NULL);
 
 		// Handle loss of D3D9 device
@@ -131,8 +128,7 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	return 0;
 }
 
-LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
-{
+LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 	if (ImGui_ImplWin32_WndProcHandler(hWnd, msg, wParam, lParam))
 		return true;
 
@@ -151,12 +147,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
 			return 0;
 		break;
 	case WM_DESTROY:
-		::PostQuitMessage(0);
+		PostQuitMessage(0);
 		return 0;
 	}
-	return ::DefWindowProc(hWnd, msg, wParam, lParam);
+	return DefWindowProc(hWnd, msg, wParam, lParam);
 }
-
 
 /*auto version = "1";
 string check = dchar("http://f0632720.xsph.ru/version.txt");

@@ -49,12 +49,14 @@
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="inject\Injection.cpp" />
     <ClCompile Include="utils\utils.cpp">
       <Filter>utils</Filter>
     </ClCompile>
     <ClCompile Include="ui\ui.cc">
       <Filter>ui</Filter>
+    </ClCompile>
+    <ClCompile Include="inject\Injection.cpp">
+      <Filter>inject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -96,7 +98,6 @@
     <ClInclude Include="imgui\imstb_textedit.h">
       <Filter>imgui</Filter>
     </ClInclude>
-    <ClInclude Include="inject\Injection.h" />
     <ClInclude Include="utils\utils.hpp">
       <Filter>utils</Filter>
     </ClInclude>
@@ -104,5 +105,8 @@
       <Filter>ui</Filter>
     </ClInclude>
     <ClInclude Include="globals.hh" />
+    <ClInclude Include="inject\Injection.h">
+      <Filter>inject</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

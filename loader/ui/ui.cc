@@ -13,6 +13,7 @@ void ui::pre() {
     ImGui::InputText("Password", globals.pass_word, IM_ARRAYSIZE(globals.pass_word), ImGuiInputTextFlags_Password);
     if (ImGui::Button("Login")) {
         //DO YOUR LOGIN HERE
+        globals.auth = true;
     }
 }
 
